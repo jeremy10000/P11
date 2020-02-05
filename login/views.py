@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.contrib.auth import login, authenticate, logout
 from .forms import JoinForm
@@ -25,5 +25,8 @@ class Join(FormView):
 
 def mypage(request):
     """ Account profile """
+    if 'save' in request.session.keys():
+        (product, substitute) = request.session['save']
+        return redirect('product:save')
 
     return render(request, "registration/mypage.html")
