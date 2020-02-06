@@ -29,7 +29,7 @@ class LoginTest(TestCase):
             'password': '@december2019'
         })
         self.assertRedirects(
-            response, '/', status_code=302, target_status_code=200)
+            response, '/login/mypage/', status_code=302, target_status_code=200)
 
     def test_login_invalid(self):
         response = self.client.post(self.login_url, {

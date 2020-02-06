@@ -185,8 +185,8 @@ class ProductTest(TestCase):
             }
         )
         self.assertRedirects(
-            response, '/login?next=/product/save/',
-            status_code=302, target_status_code=301)
+            response, '/login/',
+            status_code=302, target_status_code=200)
 
     def test_save_success_and_error_if_logged(self):
         self.client.login(
