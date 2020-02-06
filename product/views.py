@@ -73,16 +73,11 @@ class Detail(DetailView):
     template_name = "product/detail.html"
 
 
-@login_required
 def save_view(request):
     """ Save Products. """
 
-    if request.method == 'POST':
-
-        product = request.POST['product_id']
-        substitute = request.POST['substitute_id']
-        page = request.POST['next']
-
+    def procedure():
+        """ Procedure to save """
         user_product = Product.objects.get(pk=product)
         user_substitute = Product.objects.get(pk=substitute)
         _user = User.objects.get(pk=request.user.pk)
@@ -95,13 +90,51 @@ def save_view(request):
             )
 
             if created:
-                return redirect('product:favorites')
+                return True
             else:
                 messages.add_message(
                     request,
                     messages.INFO,
                     'Le produit est déja enregistré !'
                 )
+                return False
+
+    # POST
+    if request.method == 'POST':
+
+        product = request.POST['product_id']
+        substitute = request.POST['substitute_id']
+        page = request.POST['next']
+
+        # If the user is logged in.
+        if request.user.pk:
+            in_db = procedure()
+
+            if in_db:
+                return redirect('product:favorites')
+            else:
+                return redirect(page)
+
+        else:
+            # Keep product IDs in a session variable.
+            request.session['save'] = (product, substitute)
+            request.session['save_page'] = page
+            return redirect('login:connect')
+
+    # If the user has just logged in and the session variable exists.
+    else:
+        if 'save' in request.session.keys():
+            (product, substitute) = request.session['save']
+            page = request.session['save_page']
+
+            del request.session['save']
+            del request.session['save_page']
+
+            in_db = procedure()
+
+            if in_db:
+                return redirect('product:favorites')
+            else:
                 return redirect(page)
 
     return redirect('index')
