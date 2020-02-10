@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import FormView
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from .forms import JoinForm
 
 
@@ -23,6 +24,7 @@ class Join(FormView):
         return super().form_valid(form)
 
 
+@login_required
 def mypage(request):
     """ Account profile """
     if 'save' in request.session.keys():
