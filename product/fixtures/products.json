@@ -1,0 +1,87 @@
+[
+    {
+        "model": "product.level", 
+        "pk": 1, 
+        "fields": {
+            "name": "low"
+        }
+    }, 
+    {
+        "model": "product.level", 
+        "pk": 2, 
+        "fields": {
+            "name": "moderate"
+        }
+    }, 
+    {
+        "model": "product.level", 
+        "pk": 3, 
+        "fields": {
+            "name": "high"
+        }
+    }, 
+    {
+        "model": "product.category",
+        "pk": 1,
+        "fields": {
+            "name": "Sauce"
+        }
+    },
+    {
+        "model": "product.product", 
+        "pk": 1, 
+        "fields": {
+            "name": "Mayonnaise", 
+            "category_id": 1, 
+            "nutriscore": "c",
+            "url": "https://fr.openfoodfacts.org/produit/2020/mayo",
+            "photo": "https://static.openfoodfacts.org/images/front_fr.400.jpg",
+            "fat_100g": "4.30", 
+            "sugars_100g": "4.30", 
+            "salt_100g": "1.09", 
+            "saturate_fat_100g": "0.40", 
+            "level_salt": 3, 
+            "level_sugars": 2, 
+            "level_saturate_fat": 2, 
+            "level_fat": 3
+        }
+    },
+    {
+        "model": "product.product", 
+        "pk": 2, 
+        "fields": {
+            "name": "Sauce tomate", 
+            "category_id": 1, 
+            "nutriscore": "b",
+            "url": "https://fr.openfoodfacts.org/produit/2020/sauce-tomate",
+            "photo": "https://static.openfoodfacts.org/images/front_fr.97.400.jpg",
+            "fat_100g": "1.00", 
+            "sugars_100g": "2.20", 
+            "salt_100g": "1.10", 
+            "saturate_fat_100g": "0.50", 
+            "level_salt": 1, 
+            "level_sugars": 2, 
+            "level_saturate_fat": 1, 
+            "level_fat": 3
+        }
+    },
+    {
+        "model": "product.product", 
+        "pk": 3, 
+        "fields": {
+            "name": "Ketchup", 
+            "category_id": 1, 
+            "nutriscore": "c",
+            "url": "https://fr.openfoodfacts.org/produit/2020/ketchup",
+            "photo": "https://static.openfoodfacts.org/images/front_fr.9.jpg",
+            "fat_100g": "2.00", 
+            "sugars_100g": "2.60", 
+            "salt_100g": "1.90", 
+            "saturate_fat_100g": "3.50", 
+            "level_salt": 3, 
+            "level_sugars": 2, 
+            "level_saturate_fat": 2, 
+            "level_fat": 2
+        }
+    }
+]
