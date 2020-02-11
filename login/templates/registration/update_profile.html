@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+- Changer le profil
+{% endblock title %}
+
+{% block content %}
+
+<header class="masthead">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-6 align-self-center">
+                <div class="card">
+                    <h5 class="card-header">Modification du profil</h5>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% for field in form %}
+                            <div class="form-group text-left">
+                                {{ field.label_tag }}
+                                {{ field }}
+                                
+                                {% if field.errors %}
+                                        <p>{{ field.errors }}</p>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                            <button type="submit" class="btn btn-primary">
+                                Valider
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<script>
+    let input_fn = document.getElementById('id_first_name');
+    let input_ln = document.getElementById('id_last_name');
+    input_fn.setAttribute('class', 'form-control');
+    input_ln.setAttribute('class', 'form-control');
+</script>
+{% endblock content %}
