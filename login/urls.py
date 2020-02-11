@@ -31,4 +31,22 @@ urlpatterns = [
          PasswordChangeDoneView.as_view(), name="password_change_done"),
 
     # Receive an email to get a new password.
+    path('reset-password/',
+         PasswordResetView.as_view(
+            success_url=reverse_lazy('login:password_reset_done')),
+         name="password_reset"),
+
+    path('reset-password/done/',
+         PasswordResetDoneView.as_view(),
+         name="password_reset_done"),
+
+    path('reset/<uidb64>/<token>/',
+         PasswordResetConfirmView.as_view(
+            success_url=reverse_lazy('login:password_reset_complete')
+         ),
+         name="password_reset_confirm"),
+
+    path('reset/done/',
+         PasswordResetCompleteView.as_view(),
+         name="password_reset_complete"),
 ]
