@@ -17,19 +17,26 @@
             <div class="card">
                 <h5 class="card-header bg-dark text-white">Mon profil</h5>
                 <div class="card-body">
-                    <form method="POST">
+                    <form action="{% url 'login:update' %}" method="GET">
                         <div class="form-group text-left">
                             <label for="mail_username">Adresse mail :</label>
                             <input type="email" class="form-control" placeholder="{{ user.email }}" disabled>
                         </div>
                         <div class="form-group text-left">
+                            <label for="ame">Nom et prénom :</label>
+                            <input type="text" class="form-control" placeholder="{{ user.last_name }} {{ user.first_name }}" disabled>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary mb-2">
+                            Modifier
+                        </button>
+                        <div class="form-group text-left">
                             <label for="password_username">Mot de passe :</label>
                             <input type="password" class="form-control" placeholder="*******" disabled>
                         </div>
-                        
-                        <button type="submit" class="btn btn-dark disabled" disabled>
-                            Modifier
-                        </button>
+                        <a href="{% url 'login:change_pwd' %}" class="btn btn-primary">
+                            Changer de mot de passe
+                        </a>
                     </form>
                 </div>
             </div>
