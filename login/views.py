@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
-from django.views.generic import FormView
+from django.views.generic import FormView, UpdateView
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 from .forms import JoinForm
+from .models import User
 
 
 class Join(FormView):
@@ -32,3 +35,14 @@ def mypage(request):
         return redirect('product:save')
 
     return render(request, "registration/mypage.html")
+
+
+class UpdateProfile(LoginRequiredMixin, UpdateView):
+    """ Change the first and last name. """
+    model = User
+    fields = ["first_name", "last_name"]
+    template_name = 'registration/update_profile.html'
+    success_url = reverse_lazy('login:mypage')
+
+    def get_object(self, queryset=None):
+        return User.objects.get(pk=self.request.user.pk)
