@@ -32,7 +32,6 @@ else:
 ALLOWED_HOSTS = []
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,7 +76,6 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -89,7 +87,6 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME':
@@ -109,11 +106,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# The username is an email address.
 AUTH_USER_MODEL = 'login.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
-
 LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'Europe/Paris'
@@ -126,17 +123,29 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+# Once logged in, the user is redirected to the profile page.
 LOGIN_REDIRECT_URL = 'login:mypage'
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_URL = "/login"
 
+# Sendgrid
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# The email is sent by this email address.
+DEFAULT_FROM_EMAIL = 'Pur Beurre <support@purbeurre.fr>'
+# password_reset_subject.txt contains the subject of the mail.
+
+# Heroku and whitenoise
 if os.environ.get('ENV') == 'PRODUCTION':
 
     # Static files settings
