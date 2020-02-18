@@ -3,18 +3,29 @@ language: python
 python:
   - '3.6'
 
+addons:
+  firefox: "73.0"
+  apt:
+    packages:
+      firefox-geckodriver
+
 branches:
   only:
     - profile
     - save
     - fixture
     - forgot-password
+    - test-selenium
+
+before_install:
+  - export DJANGO_SETTINGS_MODULE="purbeurre.travis"
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - pip install -r requirements.txt
 
-env: DJANGO_SETTINGS_MODULE="purbeurre.travis"
+env:
+  - MOZ_HEADLESS=1
 
 services:
   - postgresql
