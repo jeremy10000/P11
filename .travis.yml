@@ -17,6 +17,7 @@ branches:
     - fixture
     - forgot-password
     - test-selenium
+    - redirection
 
 before_install:
   - wget https://chromedriver.storage.googleapis.com/80.0.3987.16/chromedriver_linux64.zip
