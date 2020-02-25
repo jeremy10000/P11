@@ -29,7 +29,8 @@ class JoinTest(TestCase):
             'password2': '@jesuisNouveau'
         })
         self.assertRedirects(
-            response, '/', status_code=302, target_status_code=200)
+            response, '/login/mypage/',
+            status_code=302, target_status_code=200)
 
     def test_join_form_invalid(self):
         """ The passwords don't match. """
