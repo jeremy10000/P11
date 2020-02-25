@@ -12,7 +12,7 @@ class Join(FormView):
     """Show form and create user if valid."""
 
     form_class = JoinForm
-    success_url = '/'
+    success_url = reverse_lazy('login:mypage')
     template_name = 'registration/join.html'
 
     def form_valid(self, form):
