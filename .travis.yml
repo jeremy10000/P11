@@ -4,6 +4,7 @@ python:
   - '3.6'
 
 addons:
+  chrome: stable
   firefox: "73.0"
   apt:
     packages:
@@ -18,6 +19,9 @@ branches:
     - test-selenium
 
 before_install:
+  - wget https://chromedriver.storage.googleapis.com/80.0.3987.16/chromedriver_linux64.zip
+  - sudo unzip chromedriver_linux64.zip -d /usr/bin/chromedriver
+  - export PATH="$PATH:/usr/bin/chromedriver"
   - export DJANGO_SETTINGS_MODULE="purbeurre.travis"
 
 before_script:
@@ -33,3 +37,4 @@ services:
 script:
   - ./manage.py migrate
   - ./manage.py test
+  
